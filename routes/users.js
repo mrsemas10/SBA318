@@ -12,7 +12,7 @@ app.use(bodyParser.json({extended: true}));
 
 router.get("/users", (req, res) => {
     res.json(users);
-    res.send('my family');
+    // res.send('my family');
 })
 
 router.post("/users", (req, res) => {
