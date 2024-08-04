@@ -63,20 +63,20 @@ app.get("/users/:id", (req, res, next)=> {
     else next();   
 })
 
-// app.patch("/users/:id", (req, res, next)=> {
-//     const user = users.find((n, i) => {
-//         if (n.id == req.params.id) {
-//             for (const key in req.body) {
-//                 users[i][key] = req.body[key];
-//             }
-//             return true;
-//         }
-//     })
-//     if (user)
-//         res.json(user);
-//     else next();
+app.patch("/users/:id", (req, res, next)=> {
+    const user = users.find((n, i) => {
+        if (n.id == req.params.id) {
+            for (const key in req.body) {
+                users[i][key] = req.body[key];
+            }
+            return true;
+        }
+    })
+    if (user)
+        res.json(user);
+    else next();
     
-// })
+})
 
 
 app.use((req, res) => {
