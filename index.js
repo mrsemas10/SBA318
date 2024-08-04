@@ -5,7 +5,6 @@ const app = express();
 const PORT = 3000;
 const fs = require('fs');
 
-
 const posts = require('./routes/posts.js');
 const users = require('./routes/users.js');
 
@@ -14,6 +13,12 @@ const users = require('./routes/users.js');
 
 
 const bodyParser = require("body-parser");
+
+// app.use(express.static("./styles"));
+
+// app.engine('views', () => {
+//     fs.readFile()
+// })
 
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json({extended: true}));
@@ -72,22 +77,6 @@ app.get("/users/:id", (req, res, next)=> {
 //     else next();
     
 // })
-
-app.use(express.static('./styles'));
-
-app.engine("perscholas", (filePath, options, callback) => {
-    fs.readFile(filePath, (err, content) => {
-        if (err) return callback(err);
-        const rendered = content
-            .toString()
-            .replaceAll("#title#", `${options.title}`)
-            .replace("#content#", `${options.content}`)
-            .replace("#href#", `${options.href}`)
-            .replace('#text#', `${options.text}`);
-        return callback(null, rendered);
-    });
-});
-
 
 
 app.use((req, res) => {
